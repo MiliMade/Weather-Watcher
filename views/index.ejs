@@ -1,16 +1,59 @@
-<form action="/" method="POST">
-  <label for="city">Pick a location:</label>
-  <select name="city" id="">
-    <option value="" data-display="Select">Pick any location</option>
-    <option value="London">London</option>
-    <option value="Osaka">Osaka</option>
-    <option value="New York">New York</option>
-    <option value="Tokyo">Tokyo</option>
-    <option value="Rosslyn Farms">Washington DC</option>
-    <option value="Beijing">Beijing</option>
-    <option value="Mumbai">Mumbai</option>
-    <option value="Paris">Paris</option>
-    <option value="Singapore">Singapore</option>
-  </select>
-  <input type="submit" value="Get Weather">
-</form> 
+<section>
+  <form action="/" method="POST">
+    <label for="city">Pick a location:</label>
+    <select name="city" id="">
+      <option value="" data-display="Select">Pick any location</option>
+      <option value="London">London</option>
+      <option value="Osaka">Osaka</option>
+      <option value="New York">New York</option>
+      <option value="Tokyo">Tokyo</option>
+      <option value="Beijing">Beijing</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Paris">Paris</option>
+      <option value="Singapore">Singapore</option>
+    </select>
+    <input type="submit" value="Get Weather">
+  </form>
+</section>
+
+<body>
+<section>
+  <%if(locals.videoLink !=null || locals.webCamData !=null){%>
+    <div>
+      <h3>24hr timelapse of <%=webCamData.title%> </h3>
+      <iframe src="<%=videoLink%>" frameborder="0" width="500" height="300"></iframe>
+    </div>
+    <%}%>
+
+      <%if(locals.weatherData !=null){%>
+        <div>
+          <h3>Current Weather Details</h3>
+          <ul>
+            <li><span class="label">Weather description:</span> <span class="info">
+                <%=weatherData.weather[0].description.toUpperCase()%> <img class="weatherIcon" src="<%=weatherIcon%>" alt="">
+              </span>
+            </li>
+            <li>
+              <span class="label">Temperature:</span> <span class="info">
+                <%=weatherData.main.temp %>&degC / <%=parseFloat((weatherData.main.temp*9/5)+32).toFixed(2)%> F
+              </span>
+            </li>
+            <li>
+              <ul>
+                <li><span class="label">Feels like: </span><span class="info"><%=weatherData.main.feels_like%>&degC / <%=parseFloat(((weatherData.main.feels_like*9/5)+32).toFixed(2))%> F</span></li>
+                <li><span class="label">Max Temp: </span><span class="info"><%=weatherData.main.temp_max%>&degC / <%=parseFloat((weatherData.main.temp_max*9/5)+32).toFixed(2)%> F</span></li>
+                <li><span class="label">Min Temp: </span><span class="info"><%=weatherData.main.temp_min%>&degC / <%=parseFloat((weatherData.main.temp_min*9/5)+32).toFixed(2)%> F</span></li>
+              </ul>
+            </li>
+            <li>
+              <span class="label">Pressure:</span> <span class="info"><%=weatherData.main.pressure %>mb</span>
+            </li>
+            <li>
+              <span class="label">Humidity:</span> <span class="info"><%=weatherData.main.humidity %>%</span>
+            </li>
+          </ul>
+
+        </div>
+        <%}%>
+</section>
+</body>

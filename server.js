@@ -11,7 +11,7 @@ import 'dotenv/config'
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const PORT = 3000;
+const PORT = 4000;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
